@@ -9,9 +9,9 @@ async function deploy() {
     alchemy: process.env.ALCHEMY_API_KEY,
     infura: process.env.INFURA_API_KEY,
     etherscan: process.env.ETHERSCAN_API_KEY,
-  });
+  }) as any;
   const wallet = new ethers.Wallet(process.env.PRIVATE_KEY ?? "");
-  const signer = wallet.connect(provider);
+  const signer = wallet.connect(provider) as any;
   const balance = await signer.getBalance();
   console.log(
     `Working on Goerli Testnet connected to wallet ${signer.address} with balance of ${balance}`
