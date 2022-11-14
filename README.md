@@ -102,9 +102,17 @@ VOTING_ADDRESS is the address you want to check. BLOCK_NUMBER is goerli block ti
 
 - yarn run ts-node ./scripts/CheckVotePower.ts CONTRACT_ADDRESS VOTING_ADDRESS BLOCK_NUMBER
 
+### Withdraw
+
+only works for admin of token contract. transfers all eth in contract to caller. no use letting the eth sit locked in the contract forever
+
+- yarn run ts-node ./scripts/Withdraw.ts CONTRACT_ADDRESS
+
 #### Notes
 
 The ERC20Votes contract is deployed to goerli. The address is:
 0xd6CD9823d1b9a8F215Fc0230FF712CbA57c53d40
 
 You can paste your address in the discord to request tokens to be sent to you. You can also mint your own tokens with a function that has been added by sending ether to the contract. It will mint you G5 voting tokens 1:1 with wei. Just use the BuyTokens script as shown above. This is to make it easier to interact without having to wait for the admin to mint tokens for you
+
+The ERC20 Voting Token contract in this repo also has a withdraw function to allow the deployer/admin to pull out any eth sent to the contract from people buying tokens
