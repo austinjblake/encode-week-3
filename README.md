@@ -120,6 +120,18 @@ TOKEN_ADDRESS is the contract address of the ERC20voting token used to vote on t
 
 after this is run the console will print out the address of the newly deployed contract. copy and keep this for future use
 
+### Vote
+
+after your address has voting tokens and has delegated voting power to your address you can vote
+
+CONTRACT_ADDRESS is ballot contract address. VOTE is the index of the proposal you want to vote for(1, 2, 3...).
+
+Proposal Index is zero based so to vote for Proposal 1 you would pass in 0. Proposal2 can be voted for by passing in 1, etc
+
+AMOUNT is the amount of votes you want to allocate to the proposal based on your voting power
+
+- yarn run ts-node --files ./scripts/Vote.ts CONTRACT_ADDRESS VOTE AMOUNT
+
 #### Notes
 
 The ERC20Votes contract is deployed to goerli. The address is:
