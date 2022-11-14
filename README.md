@@ -108,6 +108,18 @@ only works for admin of token contract. transfers all eth in contract to caller.
 
 - yarn run ts-node ./scripts/Withdraw.ts CONTRACT_ADDRESS
 
+### Ballot Deployment
+
+this step is not needed if interacting with a contract already on the blockchain
+
+if you want to deploy your own, enter the command below in the terminal and substitute the names of the proposals you want to use for PROPOSAL1, PROPOSAL 2...
+
+TOKEN_ADDRESS is the contract address of the ERC20voting token used to vote on this ballot. TARGET_BLOCK is the block number on the goerli testnet where the voting power of accounts is snapshotted and used for this ballot
+
+- yarn run ts-node --files ./scripts/Deployments.ts TOKEN_ADDRESS TARGET_BLOCK PROPOSAL1 PROPOSAL2 PROPOSAL3 PROPOSAL4
+
+after this is run the console will print out the address of the newly deployed contract. copy and keep this for future use
+
 #### Notes
 
 The ERC20Votes contract is deployed to goerli. The address is:
