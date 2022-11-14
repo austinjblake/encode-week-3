@@ -66,7 +66,7 @@ if you are interacting with an existing contract, send your address in a message
 
 if you deployed your own contract you can use the command below to mint tokens to another address for voting
 
-paste the command into the terminal. replace CONTRACT_ADDRESS with the address you got from the deployment step. MINT_TO_ADDRESS is the wallet address you want to mint voting tokens for. MINT_AMOUNT is the number of tokens to mint denominated in ether. Tokens are minted 1:1 with gwei so a MINT_AMOUNT of 0.01 would mint 10000000000000000 tokens
+paste the command into the terminal. replace CONTRACT_ADDRESS with the address you got from the deployment step. MINT_TO_ADDRESS is the wallet address you want to mint voting tokens for. MINT_AMOUNT is the number of tokens to mint denominated in ether. Tokens are minted 1:1 with wei so a MINT_AMOUNT of 0.01 would mint 10000000000000000 tokens
 
 - yarn run ts-node ./scripts/MintToken.ts CONTRACT_ADDRESS MINT_TO_ADDRESS MINT_AMOUNT
 
@@ -74,11 +74,11 @@ paste the command into the terminal. replace CONTRACT_ADDRESS with the address y
 
 tokens are used to calculate voting power and accounts must have a balance of tokens before ballot snapshot to vote
 
-if you are not the admin of the ERC20Votes token contract and want to get tokens for voting without waiting for an admin to mint you tokens, you can run this script to call the buyTokens function. The contract will mint you tokens proportionate to the value of ether you send. 1 gwei = 1 token. Anyone can call this function
+if you are not the admin of the ERC20Votes token contract and want to get tokens for voting without waiting for an admin to mint you tokens, you can run this script to call the buyTokens function. The contract will mint you tokens proportionate to the value of ether you send. 1 wei = 1 token. Anyone can call this function
 
-paste the command into the terminal. replace CONTRACT_ADDRESS with the address you got from the deployment step. BUY_AMOUNT is the amount of ether you are sending to the contract. Tokens are minted 1:1 with gwei so a BUY_AMOUNT of 0.01 would mint 10000000000000000 tokens
+paste the command into the terminal. replace CONTRACT_ADDRESS with the address you got from the deployment step. BUY_AMOUNT is the amount of ether you are sending to the contract. Tokens are minted 1:1 with wei so a BUY_AMOUNT of 0.01 would mint 10000000000000000 tokens
 
-this mints the tokens to whoever sends the transaction so mint address in not needed
+this mints the tokens to whoever sends the transaction so mint address is not needed
 
 - yarn run ts-node ./scripts/BuyToken.ts CONTRACT_ADDRESS BUY_AMOUNT
 
@@ -92,9 +92,19 @@ DELEGATE_TO is the address you want to receive the voting power of your tokens. 
 
 - yarn run ts-node ./scripts/Delegate.ts CONTRACT_ADDRESS DELEGATE_TO
 
+### Check Voting power
+
+after an account has a balance of tokens, those tokens must be delegated in order to give voting power. accounts can self delegate or delegate to another address but delegation is required or you will not be able to vote
+
+function gets the voting power of an address at a certain point in time measured by block number
+
+VOTING_ADDRESS is the address you want to check. BLOCK_NUMBER is goerli block timestamp to check power. Leave empty to check last mined block
+
+- yarn run ts-node ./scripts/CheckVotePower.ts CONTRACT_ADDRESS VOTING_ADDRESS BLOCK_NUMBER
+
 #### Notes
 
 The ERC20Votes contract is deployed to goerli. The address is:
 0xd6CD9823d1b9a8F215Fc0230FF712CbA57c53d40
 
-You can paste your address in the discord to request tokens to be sent to you. You can also mint your own tokens with a function that has been added by sending ether to the contract. It will mint you G5 voting tokens 1:1 with gwei. Just use the BuyTokens script as shown above. This is to make it easier to interact without having to wait for the admin to mint tokens for you
+You can paste your address in the discord to request tokens to be sent to you. You can also mint your own tokens with a function that has been added by sending ether to the contract. It will mint you G5 voting tokens 1:1 with wei. Just use the BuyTokens script as shown above. This is to make it easier to interact without having to wait for the admin to mint tokens for you
